@@ -1,0 +1,183 @@
+paths:
+  /todos/:
+    get:
+      tags:
+      - "todo"
+      summary: "Get all todos"
+      operationId: "GetAllTodo"
+      produces:
+      - "application/x-www-form-urlencoded"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResponseList"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      tags:
+      - "todo"
+      summary: "Add new todo"
+      operationId: "PostTodo"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Todo object"
+        required: true
+        schema:
+          $ref: "#/definitions/Model"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResponseModel"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+  /todos/{todo_id}:
+    get:
+      tags:
+      - "todo"
+      summary: "Get a todo"
+      operationId: "GetTodo"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "todo_id"
+        in: "path"
+        description: "id of todo that need to be updated"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResponseModel"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+      - "todo"
+      summary: "Update a todo"
+      operationId: "UpdateTodo"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "todo_id"
+        in: "path"
+        description: "id of todo that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Todo object"
+        required: true
+        schema:
+          $ref: "#/definitions/Model"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResponseModel"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+      - "todo"
+      summary: "Delete a todo"
+      operationId: "DeleteTodo"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "todo_id"
+        in: "path"
+        description: "id of todo that need to be updated"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResponseModel"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+  /todos/{todo_id}/completed:
+    put:
+      tags:
+      - "todo"
+      summary: "Update a todo to completed"
+      operationId: "UpdateCompletedTodo"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - name: "todo_id"
+        in: "path"
+        description: "id of todo that need to be updated"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResponseModel"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Error:
+    type: "object"
+    properties:
+      status:
+        type: "boolean"
+        default: false
+        description: "False"
+      error:
+        description: "Error message"
+        type: "string"
+  ResponseList:
+    type: "object"
+    properties:
+      status:
+        type: "boolean"
+        default: true
+        description: "True"
+      todos:
+        description: "List of todos"
+        type: "array"
+        items:
+          $ref: "#/definitions/Model"
+  ResponseDelete:
+    type: "object"
+    properties:
+      status:
+        type: "boolean"
+        default: false
+        description: "False"
+      error:
+        description: "Message"
+        type: "string"
+  Model:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        required: true
+      completed:
+        type: "boolean"
+        default: false
+      created_at:
+        type: "string"
+        format: "date-time"
+        description: "date in UTC"

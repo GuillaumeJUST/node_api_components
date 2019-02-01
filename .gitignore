@@ -1,0 +1,10 @@
+# Logs
+.idea
+coverage
+node_modules
+package-lock.json
+logs/*.log
+.nyc_output/
+coverage.lcov
+config/*.json
+!config/default.json

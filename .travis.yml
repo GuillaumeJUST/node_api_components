@@ -1,0 +1,12 @@
+language: node_js
+node_js: 5.2.0
+before_install: npm install -g grunt-cli
+codecov --token=: a64303ba-c5d0-4002-b51b-a4c5707dc562
+after_success: npm run coverage
+deploy:
+  provider: heroku
+  api_key:
+    secure: 3XrD4L36+S5fZVYymiMRsrCxNqp5eYvVYA0ejGfcWxQ0fmJyXRedfHijoD1XT59KpfhJigQwi14RacaJ/kREHKAoVS5r8b8d3wN52ZfFrmrllTbRRds8+lbVogsroKjywE52zvAW8FFbtXTLYGdKkWEQQIk3LY4zETkQoO6os5Cm8MNWf4YAXtUu3MtiGJNh0n+O/8r6lBCrVJ3WbtEN1ilkxCk/T+pYB9/GalkGYqXSdIfwzJcSuI/QqICSBtNuDH27OuqS75eTGyGOUVTwY6cm5OnU+dCAXZ3ziIcoPCo5yFWvQ9oawwBsslGo4EaEfzUf4FLx6GMV1h2qFePuRLHpvP+FJycW5kdibQabmGzCFXGu9mT9zImQxYXLNqWd5vUpYYY6Q22oSYf//Ju7WtaqfHui34MhXmcP1pDaLhSSYlN0oOLyYq05ZK/Yd3a6TvdfTc6h5Ui6rXq3qoWnjw4ethcbyf2Ezt1K4FA1G/LmPHGoekoQvuhHDM9ZgZPWbT+qeoJ+sSjh9wGYqnFgNVMFY+qqzhxVDbVT+6U5TfaT2tj5UftZ6onBdBa9xTsISltUzTryrckjP7YdbPjNvFlHHmEF6Y+XgQJU58Uvl9ohW0C0ARYz2/GWPUO+BAu9bCKf+H0Q6kV6nzxrjH1wge4UZ3y1DFOA2Qa3pMgonPU=
+  app: todoapi
+  on:
+    repo: rajzshkr/mean-todo

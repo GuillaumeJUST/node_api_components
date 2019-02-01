@@ -1,0 +1,69 @@
+{
+    "name": "node_api_full_rest",
+    "version": "1.0.0",
+    "description": "Node API Full Rest",
+    "main": "server.js",
+    "scripts": {
+        "preinstall": "npm i grunt -g",
+        "install": "npm install",
+        "start": "./node_modules/.bin/grunt nodemon",
+        "test": "cross-env NODE_ENV=test nyc node_modules/mocha/bin/_mocha --exit",
+        "coverage": "cross-env NODE_ENV=test nyc report --reporter=html > coverage.lcov && ./node_modules/.bin/codecov"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:GuillaumeJUST/node_api_components.git"
+    },
+    "bin": {
+        "codecov": "./bin/codecov"
+    },
+    "keywords": [
+        "Node",
+        "express",
+        "todo"
+    ],
+    "dependencies": {
+        "app-root-path": "^2.1.0",
+        "body-parser": "^1.18.3",
+        "codecov": "^3.1.0",
+        "config": "^3.0.1",
+        "cookie-parser": "^1.4.3",
+        "cors": "^2.8.5",
+        "debug": "~2.6.9",
+        "express": "^4.16.4",
+        "express-validator": "^5.3.1",
+        "faker": "^4.1.0",
+        "firebase-admin": "^7.0.0",
+        "method-override": "^3.0.0",
+        "mongoose": "^5.4.8",
+        "morgan": "^1.9.1",
+        "opbeat": "^4.17.0",
+        "pug": "^2.0.3",
+        "winston": "^3.2.1",
+        "express-boom": "^2.0.0"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "chai-http": "^4.2.1",
+        "codecov": "^3.1.0",
+        "cross-env": "^5.2.0",
+        "grunt": "^1.0.3",
+        "grunt-env": "^0.4.4",
+        "grunt-environmental": "^0.1.5",
+        "grunt-nodemon": "^0.4.2",
+        "grunt-simple-mocha": "^0.4.1",
+        "istanbul": "^0.4.5",
+        "jasmine": "^3.3.1",
+        "jasmine-console-reporter": "^3.1.0",
+        "jasmine-node": "^1.16.2",
+        "jasmine-supertest": "^1.0.0",
+        "mocha": "^5.2.0",
+        "nyc": "^13.1.0",
+        "should": "^13.2.3",
+        "sinon": "^7.2.3",
+        "sinon-mongoose": "^2.2.1",
+        "supertest": "^3.4.2",
+        "swagger-jsdoc": "^3.2.6",
+        "swagger-ui-express": "^4.0.2"
+    }
+}
