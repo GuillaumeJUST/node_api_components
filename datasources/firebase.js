@@ -1,16 +1,41 @@
 "use strict";
-
-
+const Request = require("request");
 const config = require('config');
-let firebaseAdmin = null;
+const logger = require('../utils/logger');
 
-if (config.get('firebase') !== false) {
-    const firebaseAdmin = require("firebase-admin");
-    /** @namespace config.firebase */
-    firebaseAdmin.initializeApp({
-        credential: firebaseAdmin.credential.cert(config.get('firebase.cert')),
-        databaseURL: config.get('firebase.databaseURL')
-    });
-}
+const DataSource = function () {
 
-module.exports = firebaseAdmin;
+    const ObjectFireBase = {};
+
+    ObjectFireBase.SignInWithEmail = function (user, password, callback) {
+        //todo change add function for connection
+        var options = { method: 'POST',
+            url: config.get('firebase.api_url'),
+            qs: {
+                key: config.get('firebase.api_key')
+            },
+            headers: {
+                'Postman-Token': '5c7af76e-744d-403a-bc6b-23dd80bd9018',
+                'cache-control': 'no-cache',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            form: {
+                    email: user,
+                    password: password,
+                    returnSecureToken: true
+            }
+        };
+
+        Request(options, function (error, response, body) {
+            //todo add promise
+            if (error) throw new Error(error);
+
+            console.log(body);
+        });
+
+    };
+
+    return ObjectFireBase;
+};
+
+module.exports = DataSource();

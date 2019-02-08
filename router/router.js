@@ -8,8 +8,8 @@ routes.get('/', (req, res) => {
 const todosAPI = require('../components/todos/todosAPI');
 routes.use('/todos', todosAPI);
 
-const usersAPI = require('../components/users/usersAPI');
-routes.use('/users', usersAPI);
+const authAPI = require('../components/auth/authAPI');
+routes.use('/auth', authAPI);
 
 // Swagger
 if (config.get('develop')) {
