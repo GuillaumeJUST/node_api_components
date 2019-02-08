@@ -5,7 +5,7 @@ const AuthValidation = require('./authValidation');
 const router = require('express').Router();
 
 router.post('/SignInWithEmail',
-    AuthValidation.getValidations('login'),
+    AuthValidation.getValidations('loginWithEmail'),
     AuthValidation.checkValidationResult,
     AuthController.SignInWithEmail
 );
