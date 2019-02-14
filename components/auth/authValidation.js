@@ -8,10 +8,38 @@ module.exports.checkValidationResult = Validation;
 
 function getValidations(type) {
     let validations = [];
-    if (type === 'loginWithEmail') {
-        validations.push(check('email').isLength({ min: 3 }).withMessage('Email is required'));
-        validations.push(check('password').isLength({ min: 3 }).withMessage('Password is required'));
-    }
+    let items = getValidationItems(type);
+    items.forEach(function(itemName) {
+        switch (itemName) {
+            case 'idToken' :
+                validations.push(check('idToken').isLength({ min: 3 }).withMessage('Token is required'));
+                break;
+            case 'password' :
+                validations.push(check('password').isLength({ min: 3 }).withMessage('Password is required'));
+                break;
+            case 'email' :
+                validations.push(check('email').isLength({ min: 3 }).withMessage('Email is required'));
+                break;
+        }
+    });
 
     return validations;
 }
+
+function getValidationItems(type) {
+    let items = [];
+    switch (type) {
+        case 'loginWithEmail' :
+            items = ['password', 'email'];
+            break;
+        case 'updatePassword' :
+            items = ['password', 'idToken'];
+            break;
+        case 'signOut' :
+            items = ['idToken'];
+            break;
+    }
+
+    return items;
+}
+

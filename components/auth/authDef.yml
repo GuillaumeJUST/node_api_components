@@ -1,0 +1,157 @@
+paths:
+  /auth/signInWithEmail:
+    post:
+      tags:
+      - "auth"
+      summary: "Sign In"
+      operationId: "SignIn"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Auth object"
+        required: true
+        schema:
+          $ref: "#/definitions/SignInSignUp"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AuthResponse"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+  /auth/signUpWithEmail:
+    post:
+      tags:
+      - "auth"
+      summary: "Sign Up"
+      operationId: "SignUp"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Auth object"
+        required: true
+        schema:
+          $ref: "#/definitions/SignInSignUp"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AuthResponse"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+  /auth/updatePassword:
+    post:
+      tags:
+      - "auth"
+      summary: "Update password"
+      operationId: "AuthPassword"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Auth object"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdatePassword"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AuthResponse"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+  /auth/signOut:
+    post:
+      tags:
+      - "auth"
+      summary: "Sign Out"
+      operationId: "SignOut"
+      produces:
+      - "application/x-www-form-urlencoded"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Auth object"
+        required: true
+        schema:
+          $ref: "#/definitions/SignOut"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AuthResponse"
+        405:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  AuthResponse:
+    type: "object"
+    properties:
+      status:
+        type: "boolean"
+        default: true
+        description: "True"
+      auth:
+        description: "Auth"
+        type: "object"
+        schema:
+          $ref: "#/definitions/AuthModel"
+  Error:
+    type: "object"
+    properties:
+      status:
+        type: "boolean"
+        default: false
+        description: "False"
+      error:
+        description: "Error message"
+        type: "string"
+  SignInSignUp:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+        required: true
+      password:
+        type: "string"
+        default: true
+  SignOut:
+    type: "object"
+    properties:
+      idToken:
+        type: "string"
+        required: true
+  UpdatePassword:
+    type: "object"
+    properties:
+      idToken:
+        type: "string"
+        required: true
+      password:
+        type: "string"
+        default: true
+  AuthModel:
+    type: "object"
+    properties:
+      idToken:
+        type: "string"
+        required: true
+      email:
+        type: "string"
+        default: false
+      created_at:
+        type: "string"
+        format: "date-time"
+        description: "date in UTC"

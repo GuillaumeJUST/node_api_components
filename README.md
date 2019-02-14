@@ -13,6 +13,8 @@ Url for code coverage : [http://127.0.0.1:2000/coverage](http://127.0.0.1:2000/c
 
 Url for swagger : [http://127.0.0.1:2000/api/docs/](http://127.0.0.1:2000/api/docs/)
 
+Url for  Mongo : [http://127.0.0.1:8081](http://127.0.0.1:8081/api/docs/)
+
 # What's inside?
 
  - Express

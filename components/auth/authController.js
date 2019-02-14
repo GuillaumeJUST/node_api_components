@@ -32,13 +32,21 @@ const Controller = function (Auth) {
         });
     };
 
-    Obj.updatePassword = function (req, res) {
-        Firebase.updatePassword(req.body.token, req.body.password, function (err, response) {
+    Obj.UpdatePassword = function (req, res) {
+        Firebase.updatePassword(req.body.idToken, req.body.password, function (err, response) {
             if (err) return res.boom.badRequest('Something went wrong', {internal: err});
             saveToken(response, function(err, auth) {
                 if (err) return res.boom.badRequest('Something went wrong', {internal: err});
                 res.json({status: true, auth: auth});
             });
+        });
+    };
+
+    Obj.SignOut = function (req, res) {
+        /** @namespace req.params.idToken */
+        Auth.remove({idToken: req.params.idToken}, function (err) {
+            if (err) return res.boom.badRequest('Something went wrong', {internal: err});
+            res.json({status: true});
         });
     };
 

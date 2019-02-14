@@ -11,7 +11,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/ResponseList"
+            $ref: "#/definitions/TodosResponse"
         405:
           description: "Error"
           schema:
@@ -34,7 +34,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/ResponseModel"
+            $ref: "#/definitions/TodoResponse"
         405:
           description: "Error"
           schema:
@@ -57,7 +57,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/ResponseModel"
+            $ref: "#/definitions/TodoResponse"
         405:
           description: "Error"
           schema:
@@ -85,7 +85,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/ResponseModel"
+            $ref: "#/definitions/TodoResponse"
         405:
           description: "Error"
           schema:
@@ -107,7 +107,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/ResponseModel"
+            $ref: "#/definitions/Response"
         405:
           description: "Error"
           schema:
@@ -130,7 +130,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/ResponseModel"
+            $ref: "#/definitions/TodoResponse"
         405:
           description: "Error"
           schema:
@@ -146,7 +146,7 @@ definitions:
       error:
         description: "Error message"
         type: "string"
-  ResponseList:
+  TodosResponse:
     type: "object"
     properties:
       status:
@@ -157,18 +157,27 @@ definitions:
         description: "List of todos"
         type: "array"
         items:
-          $ref: "#/definitions/Model"
-  ResponseDelete:
+          $ref: "#/definitions/TodoModel"
+  TodoResponse:
+    type: "object"
+    properties:
+      status:
+        type: "boolean"
+        default: true
+        description: "True"
+      todo:
+        description: "Todo"
+        type: "object"
+        schema:
+          $ref: "#/definitions/TodoModel"
+  Response:
     type: "object"
     properties:
       status:
         type: "boolean"
         default: false
         description: "False"
-      error:
-        description: "Message"
-        type: "string"
-  Model:
+  TodoModel:
     type: "object"
     properties:
       name:
