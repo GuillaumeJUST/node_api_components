@@ -1,0 +1,420 @@
+{
+	"info": {
+		"_postman_id": "26c3f55e-82cf-4f79-9f3e-53418d1ba12f",
+		"name": "Rest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignInWithEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a0fa1d4-82c1-4507-bbbf-3c7e622bb94c",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.auth) {",
+									"    pm.globals.set(\"user_token\", jsonData.auth.idToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "docdoc.team@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "docdoc.admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/auth/signInWithEmail",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth",
+								"signInWithEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUpWithEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "af5f6e0d-4892-46a3-bcf8-7ecee974741a",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.auth) {",
+									"    pm.globals.set(\"user_token\", jsonData.auth.idToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "docdoc.team@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "docdoc.admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/auth/signUpWithEmail",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth",
+								"signUpWithEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7639283-e48e-4d81-9f28-848f2ff03aff",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.auth) {",
+									"    pm.globals.set(\"user_token\", jsonData.auth.idToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "docdoc.admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/auth/updatePassword",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignOut",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{api}}/auth/signOut",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth",
+								"signOut"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6a63a47b-0059-46ce-b036-ef205f486676",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "dddbe15f-b409-4b79-8de6-dd6a39ef7c76",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/todos",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New todo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "ceci est un test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/todos",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a todo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/todos/5c59e038aa3c6104a4e8f19d",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"todos",
+								"5c59e038aa3c6104a4e8f19d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/todos/5223456767657",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"todos",
+								"5223456767657"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api}}/",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Todo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api}}/todos",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{user_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "36901215-d257-457d-862f-8078053d3385",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "98e45d0c-e867-4173-9c3c-564325359efc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
