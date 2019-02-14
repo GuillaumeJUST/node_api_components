@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const AuthSchema = new Schema({
     idToken: String,
     email: String,
-    password: String
+    expiresIn: Number,
+    created_at: {type: Date, default: Date.now}
 });
 
-const AuthModel = mongoose.model('loginWithEmail', AuthSchema);
+const AuthModel = mongoose.model('Auth', AuthSchema);
 
 module.exports = AuthModel;

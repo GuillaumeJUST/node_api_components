@@ -14,7 +14,6 @@ describe('App', () => {
             requester
                 .get('/api/')
                 .end((err, res) => {
-                    console.log(res.body);
                     expect(err).to.be.null;
                     expect(res).to.have.status(200);
                     expect(res.body.message).to.be.equal('Connected!');
