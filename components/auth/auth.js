@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const AuthSchema = new Schema({
     idToken: String,
     email: String,
-    expiresIn: Number,
+    expiresIn: {type: Number, default: 3600},
     created_at: {type: Date, default: Date.now}
 });
 
