@@ -10,7 +10,7 @@ const config = require('config');
 const expressValidator = require('express-validator');
 const boom = require('express-boom');
 
-const routes = require('./router/router');
+const routes = require('./router');
 
 const app = express();
 
