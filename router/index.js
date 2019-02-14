@@ -5,11 +5,8 @@ routes.get('/', (req, res) => {
     res.status(200).json({message: 'Connected!'});
 });
 
-const todosAPI = require('../components/todos/todosAPI');
-routes.use('/todos', todosAPI);
-
-const authAPI = require('../components/auth/authAPI');
-routes.use('/auth', authAPI);
+const v1 = require('./v1');
+routes.use('/v1', v1);
 
 // Swagger
 if (config.get('develop')) {

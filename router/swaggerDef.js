@@ -6,7 +6,7 @@ const swaggerDefinition = {
         description: 'This is the REST API for DocDoc', // short description of the app
     },
     host: '127.0.0.1:2000', // the host or url of the app
-    basePath: '/api', // the basepath of your endpoint
+    basePath: '/api/v1', // the basepath of your endpoint
 };
 
 // options for the swagger docs
@@ -14,7 +14,7 @@ const options = {
     // import swaggerDefinitions
     swaggerDefinition,
     // path to the API docs
-    apis: ['../components/**/*Def.yml'],
+    apis: ['./components/**/*Def.yml'],
 };
 
 module.exports = options;
