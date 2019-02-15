@@ -5,7 +5,6 @@
     "main": "server.js",
     "scripts": {
         "preinstall": "npm i grunt -g",
-        "install": "npm install",
         "start": "./node_modules/.bin/grunt nodemon",
         "test": "cross-env NODE_ENV=test nyc node_modules/mocha/bin/_mocha --exit",
         "coverage": "cross-env NODE_ENV=test nyc report --reporter=html > coverage.lcov && ./node_modules/.bin/codecov"
