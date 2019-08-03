@@ -1,12 +1,20 @@
 const routes = require('express').Router();
 const config = require('config');
 
-routes.get('/', (req, res) => {
-    res.status(200).json({message: 'Connected!'});
-});
-
 const v1 = require('./v1');
 routes.use('/v1', v1);
+
+switch (config.get('api.default_version')) {
+    case 'v1':
+        routes.use('/', v1);
+        break;
+    case 'v0':
+    case null:
+    default:
+        routes.get('/', (req, res) => {
+            res.json({data: {message : 'Connected!'}});
+        });
+}
 
 // Swagger
 if (config.get('develop')) {
